@@ -4,7 +4,7 @@ Definition you can call to test if a password is in Troy Hunt's Pwned Password A
 The way that I wrote this was so I can pass a password from another script and it will test it via Troy's API
 
 eg: 
-
+(Make sure that my PwnedPassword.py script is in the same directory as your script)
 ```
 import PwnedPassword
 password = "Password"
