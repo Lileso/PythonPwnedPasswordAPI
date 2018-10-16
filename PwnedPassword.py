@@ -7,19 +7,16 @@ def hashpassword(plaintext_password):
 
 
 def check_password(plaintext_password):
-    plaintext_password = plaintext_password
-    password = hashpassword(plaintext_password)
-    hashedpassword = password.upper()
-    validhash = hashedpassword[:5]
-    url = "https://api.pwnedpasswords.com/range/" + validhash
+    validhash = hashpassword(plaintext_password).upper()
+    url = "https://api.pwnedpasswords.com/range/" + validhash[:5]
     req = Request(url, headers= {'User-Agent': 'Mozilla/5.0'})
     html = urlopen(req).read()
     htmlstr = html.decode("utf8")
     hashes = htmlstr
     listhash = hashes.splitlines()
     for x in listhash:
-        PwnedHash = validhash + x
-        if hashedpassword in PwnedHash:
+        PwnedHash = validhash[:5] + x
+        if validhash in PwnedHash:
             return(True)
     return(False)
 if __name__ == "__main__":
