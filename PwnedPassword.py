@@ -10,15 +10,11 @@ def check_password(plaintext_password):
     validhash = hashpassword(plaintext_password).upper()
     url = "https://api.pwnedpasswords.com/range/" + validhash[:5]
     req = Request(url, headers= {'User-Agent': 'Mozilla/5.0'})
-    html = urlopen(req).read()
-    htmlstr = html.decode("utf8")
-    hashes = htmlstr
-    listhash = hashes.splitlines()
-    for x in listhash:
-        PwnedHash = validhash[:5] + x
-        if validhash in PwnedHash:
-            return(True)
-    return(False)
+    hashes = urlopen(req).read().decode("utf8")
+    if validhash[5:] in hashes:
+        return True
+    else:
+        return False
 if __name__ == "__main__":
     password = input("Please Enter Password To Test \n")
     if check_password(password) == True:
