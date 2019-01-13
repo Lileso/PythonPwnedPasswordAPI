@@ -6,13 +6,9 @@ The way that I wrote this was so I can pass a password from another script and i
 eg: 
 (Make sure that my PwnedPassword.py script is in the same directory as your script)
 ```
-import PwnedPassword
-password = "Password"
-check = PwnedPassword.check_password(password)
-if check = True:
+from PwnedPassword import PwnedPassword
+if PwnedPassword("ExamplePassword").answer == True:
   print("Password is pwned")
-elif check = False:
-  print("Password isn't pwned")
 ```
 You can also run it stand alone in which case it will ask you to enter a password do a check and print out the result
 
